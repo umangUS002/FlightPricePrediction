@@ -26,7 +26,7 @@ function FlightPricePredictor() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://flight-price-api-e6q4.onrender.com/predict', formData);
+      const response = await axios.post('http://127.0.0.1:5000/predict', formData);
       setPrediction(response.data.prediction);
     } catch (error) {
       console.error('Error fetching prediction:', error);
@@ -49,7 +49,7 @@ function FlightPricePredictor() {
   return (
     <div className="bg min-h-screen bg-gray-100 flex flex-col items-center py-10 px-10 max-sm:px-5">
       
-      <h1 className="max-sm:text-4xl text-5xl bg-red-200 py-3 px-2 rounded-lg max-sm:font-semibold font-bold text-red-600 mb-8">Flight Price Prediction</h1>
+      <h1 className="max-sm:text-4xl text-5xl bg-red-200 py-3 px-2 rounded-lg text-center max-sm:font-semibold font-bold text-red-600 mb-8">Flight Price Prediction</h1>
       
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-8 w-full max-w-4xl space-y-6">
         
