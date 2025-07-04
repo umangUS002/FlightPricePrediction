@@ -47,7 +47,7 @@ function FlightPricePredictor() {
   }, [prediction]);
 
   return (
-    <div className="bg min-h-screen bg-gray-100 flex flex-col items-center py-10 px-10 max-sm:px-10">
+    <div className="bg min-h-screen bg-gray-100 flex flex-col items-center py-10 px-10 max-sm:px-5">
       
       <h1 className="max-sm:text-4xl text-5xl bg-red-200 py-3 px-2 rounded-lg max-sm:font-semibold font-bold text-red-600 mb-8">Flight Price Prediction</h1>
       
