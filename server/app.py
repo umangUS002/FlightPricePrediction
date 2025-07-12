@@ -18,7 +18,7 @@ departure_dict = {'Early_Morning': 0, "Morning": 1, "Afternoon": 2, "Evening": 3
 stops_dict = {'zero': 0, "one": 1, "two_or_more": 2}
 arrival_dict = {'Early_Morning': 0, "Morning": 1, "Afternoon": 2, "Evening": 3, "Night": 4, "Late_Night": 5}
 destination_dict = {'Delhi': 0, "Hyderabad": 1, "Mumbai": 2, "Bangalore": 3, "Chennai": 4, "Kolkata": 5}
-class_dict = {'Economy': 0, 'Business': 1}
+flying_class_dict = {'Economy': 0, 'Business': 1}
 
 @app.route('/')
 def home():
@@ -34,14 +34,14 @@ def predict():
         stops = stops_dict[data['stops']]
         arrival_time = arrival_dict[data['arrival_time']]
         destination_city = destination_dict[data['destination_city']]
-        travel_class = class_dict[data['class']]
+        flying_class = flying_class_dict[data['flying_class']]
         
         # Calculate date difference
         departure_date = datetime.strptime(data['departure_date'], '%Y-%m-%d')
         date_diff = (departure_date - datetime.today()).days + 1
 
         # Prepare features for prediction
-        features = [airline, source_city, departure_time, stops, arrival_time, destination_city, travel_class, date_diff]
+        features = [airline, source_city, departure_time, stops, arrival_time, destination_city, flying_class, date_diff]
         prediction = model.predict([features])[0]
 
         return jsonify({'prediction': int(round(prediction, 2))})
