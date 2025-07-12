@@ -10,6 +10,7 @@ CORS(app)
 
 # Load the pre-trained model
 model = pickle.load(open('model.pkl', 'rb'))
+scaler = pickle.load(open('scaler.pkl', 'rb'))
 
 # Dictionaries for categorical variables
 airline_dict = {'AirAsia': 0, "Indigo": 1, "GO_FIRST": 2, "SpiceJet": 3, "Air_India": 4, "Vistara": 5}
@@ -42,7 +43,10 @@ def predict():
 
         # Prepare features for prediction
         features = [airline, source_city, departure_time, stops, arrival_time, destination_city, flying_class, date_diff]
-        prediction = model.predict([features])[0]
+
+        scaled_features = scaler.transform([features])
+
+        prediction = model.predict(scaled_features)[0]
 
         return jsonify({'prediction': int(round(prediction, 2))})
     except KeyError as e:
